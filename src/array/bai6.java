@@ -7,16 +7,15 @@ public class bai6 {
     public  static void main(String []argv){
     	Scanner sc = new Scanner(System.in);
         int n, x;
-        System.out.print("Nhập số lượng phần tử trong mảng:");
+        int [] a;
+        System.out.print("nhap so phan tu mang:");
         n = sc.nextInt();
-        System.out.print("Nhập số X:");
+        System.out.print("nhap x:");
         x = sc.nextInt();
-        int [] a = new int[n];
-        System.out.println("Nhập mảng:");
-
+        a = new int[n];
         for(int i = 0; i < n; i++)
         {
-            System.out.print("Nhập phần tử thứ " + (i + 1) +" : ");
+        	System.out.print("a[" + i + "] = ");
             a[i] = sc.nextInt();
         }
         int []b=new int [n+1];
@@ -25,7 +24,6 @@ public class bai6 {
             b[i] = a[i];
         }
         b[n] = x;
-
         int tam;
         for(int i = 0; i < n; i++)
         {

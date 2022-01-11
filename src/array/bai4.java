@@ -13,12 +13,12 @@ public class bai4 {
 	
     public static int min(int a[], int n, int x){
         int v = 0;
-        int min = 9999;
+        int min = 999999;
         for(int i = 0; i < n; i++){
             if(ngto(a[i])){
                 if(Math.abs(x - a[i]) < min){
                     min = Math.abs(x - a[i]);
-                    v = a[i];
+                    v = i;
                 }
             }
         }
@@ -26,15 +26,18 @@ public class bai4 {
     }
     
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        System.out.print("Nhap n: ");
-        int n = in.nextInt();
-        int a[] = new int[n];
+    	int x, n;
+    	int[] a;
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap so phan tu: ");
+        n = sc.nextInt();
+        a = new int[n];
         for (int i = 0; i < n; i++) {
-            a[i] = in.nextInt();
+        	System.out.print("a[" + i + "] = ");
+			a[i] = sc.nextInt();
         }
         System.out.print("Nhap x: ");
-        int x = in.nextInt();
+        x = sc.nextInt();
         System.out.println(min(a, n, x));
     }
 }

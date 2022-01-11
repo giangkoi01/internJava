@@ -11,7 +11,7 @@ public class bai2 {
 		n = sc.nextInt();
 		a = new int[n];
 		for (i = 0; i < n; i++) {
-			System.out.print("A[" + i + "] = ");
+			System.out.print("a[" + i + "] = ");
 			a[i] = sc.nextInt();
 		}
 		for(i = 0; i < n ; i++) {

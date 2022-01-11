@@ -4,14 +4,18 @@ import java.util.Scanner;
 
 public class bai5 {
 	public static void main(String[] args) {
+		int m, n, p;
+		int[] a;
+		int[] b;
+		Scanner sc = new Scanner(System.in);
         System.out.println("nhap so luong mang a: ");
-        int n = new Scanner(System.in).nextInt();
+        n = sc.nextInt();
         System.out.println("nhap so luong mang b: ");
-        int m = new Scanner(System.in).nextInt();
+        m = sc.nextInt();
         System.out.println("nhap p: ");
-        int p = new Scanner(System.in).nextInt();
-        int[]a = new int[n];
-        int[]b = new int[m];
+        p = sc.nextInt();
+        a = new int[n];
+        b = new int[m];
         System.out.println("nhap mang a: ");
         inputArray(a,n);
         System.out.println("nhap mang b: ");
