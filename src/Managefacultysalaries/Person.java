@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class Person {
 	private static int number = 100;
-	public int id;
-	public String name;
-	public String address;
-	public String phone;
+	private int id;
+	private String name;
+	private String address;
+	private String phone;
 	public static int getNumber() {
 		return number;
 	}

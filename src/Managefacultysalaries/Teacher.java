@@ -60,10 +60,10 @@ public class Teacher extends Person{
 	@Override
     public String toString(){
         return "Teacher{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", address='" + address +'\'' +
-                ", phone='" + phone + '\'' +
+                "id='" + super.getId() + '\'' +
+                ", name='" + super.getName() + '\'' +
+                ", address='" + super.getAddress() +'\'' +
+                ", phone='" + super.getPhone() + '\'' +
                 ", level='" + level + '\'' +
                 '}';
     }

@@ -214,5 +214,5 @@ public class ManageImpl implements Manage{
 		for (int i = 0; i < teachings.length; i++) {
 			System.out.println(teachings[i]);
 		}
-	}	
+	}
 }
