@@ -1,8 +1,12 @@
-package Managefacultysalaries;
+package Managefacultysalaries.entity;
 
 import java.util.Scanner;
 
 public class Teacher extends Person{
+	public static final String GS_TS = "Giáo Sư - Tiến Sỹ";
+	public static final String PGS_TS = "Phó Giáo Sư - Tiến Sỹ";
+	public static final String GVC = "Giảng viên chính";
+	public static final String TS = "Thạc Sỹ";
 	private String level;
 
 	public String getLevel() {
@@ -23,9 +27,7 @@ public class Teacher extends Person{
 	}
 	
 	public void input() {
-		Scanner sc = new Scanner(System.in);
 		super.input();
-		String[] arr = {"GS-TS", "PGS-TS", "Giang vien tai chinh", "Thac sy"};
 		boolean check = true;
 		do {
 			check = true;
@@ -33,21 +35,21 @@ public class Teacher extends Person{
 			System.out.println("chon trinh do: ");
 			System.out.println("1.GS-TS");
 			System.out.println("2.PGS-TS");
-			System.out.println("3.Giang vien tai chinh");
+			System.out.println("3.Giang vien chinh");
 			System.out.println("4.Thac si");
-			n = sc.nextInt();
+			n = new Scanner(System.in).nextInt();
 			switch (n) {
 			case 1:
-				this.setLevel(arr[0]);
+				this.setLevel(Teacher.GS_TS);
 				break;
 			case 2:
-				this.setLevel(arr[1]);
+				this.setLevel(Teacher.PGS_TS);
 				break;
 			case 3:
-				this.setLevel(arr[2]);
+				this.setLevel(Teacher.GVC);
 				break;
 			case 4:
-				this.setLevel(arr[3]);
+				this.setLevel(Teacher.TS);
 				break;
 			default:
 				System.out.println("trinh do khong hop le, nhap lai !");

@@ -1,4 +1,4 @@
-package Managefacultysalaries;
+package Managefacultysalaries.entity;
 
 import java.util.Arrays;
 

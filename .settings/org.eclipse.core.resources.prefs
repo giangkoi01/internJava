@@ -1,5 +1,7 @@
 eclipse.preferences.version=1
 encoding//src/Managefacultysalaries/ManageImpl.java=UTF-8
-encoding//src/Managefacultysalaries/Person.java=UTF-8
-encoding//src/Managefacultysalaries/Subject.java=UTF-8
-encoding//src/Managefacultysalaries/Teacher.java=UTF-8
+encoding//src/Managefacultysalaries/entity/Person.java=UTF-8
+encoding//src/Managefacultysalaries/entity/Subject.java=UTF-8
+encoding//src/Managefacultysalaries/entity/Teacher.java=UTF-8
+encoding//src/Managefacultysalaries/service/SubjectService.java=UTF-8
+encoding//src/Managefacultysalaries/service/TeachingService.java=UTF-8

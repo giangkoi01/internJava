@@ -1,4 +1,4 @@
-package Managefacultysalaries;
+package Managefacultysalaries.entity;
 
 import java.util.Scanner;
 
@@ -70,5 +70,4 @@ public class Person {
                 ", phone='" + phone + '\'' +
                 '}';
 	}
-	
 }
