@@ -1,8 +1,10 @@
-package studentgpamanagement;
+package studentgpamanagement.model;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Transcript {
+public class Transcript implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private Student student;
 	private Subject[] subjects;
 	private int[] poins;

@@ -1,8 +1,12 @@
-package studentgpamanagement;
+package studentgpamanagement.model;
 
+import java.io.Serializable;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Person {
+public class Person implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private static int number = 10000;
 	public int id;
 	public String name;
@@ -51,17 +55,20 @@ public class Person {
 	}
 	
 	public void input() {
-		Scanner sc = new Scanner(System.in);
 		System.out.println("nhập tên:");
-		this.setName(sc.nextLine());
+		this.setName(new Scanner(System.in).nextLine());
 		System.out.println("nhập địa chỉ : ");
-		this.setAddress(sc.nextLine());
-		try {
-			System.out.println("nhập số điện thoại :");
-			this.setPhone(sc.nextInt());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		this.setAddress(new Scanner(System.in).nextLine());
+		System.out.println("nhập số điện thoại :");
+        do {
+            try {
+                    this.phone = new Scanner(System.in).nextInt();;
+                    break;
+               
+            } catch (InputMismatchException ex) {
+                System.out.print("Số điện thoại phai là so nguyên,nhập lại! ");
+            }
+        }while (true);
 	}
 	
 	@Override
