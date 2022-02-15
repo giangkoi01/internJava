@@ -1,8 +1,6 @@
 eclipse.preferences.version=1
-encoding//src/studentgpamanagement/Manage.java=UTF-8
-encoding//src/studentgpamanagement/model/Person.java=UTF-8
-encoding//src/studentgpamanagement/model/Student.java=UTF-8
-encoding//src/studentgpamanagement/model/Subject.java=UTF-8
-encoding//src/studentgpamanagement/service/MarkSubject.java=UTF-8
-encoding//src/studentgpamanagement/service/StudentService.java=UTF-8
-encoding//src/studentgpamanagement/service/SubjectService.java=UTF-8
+encoding//src/busassignmentmanagement/Main.java=UTF-8
+encoding//src/busassignmentmanagement/model/Driver.java=UTF-8
+encoding//src/busassignmentmanagement/model/Person.java=UTF-8
+encoding//src/busassignmentmanagement/model/Router.java=UTF-8
+encoding//src/busassignmentmanagement/service/AssignmentService.java=UTF-8

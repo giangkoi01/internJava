@@ -1,4 +1,4 @@
-package studentgpamanagement.util;
+package busassignmentmanagement.util;
 
 public class StringUtil {
 	public static boolean isNullOrEmpty(String str) {
