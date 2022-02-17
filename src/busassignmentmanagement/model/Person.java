@@ -45,7 +45,7 @@ public class Person implements Serializable{
 	}
 	public Person(int id, String name, String adress, int phoneNumber) {
 		super();
-		this.id = autoId;
+		this.id = id;
 		this.name = name;
 		this.adress = adress;
 		this.phoneNumber = phoneNumber;
@@ -55,7 +55,11 @@ public class Person implements Serializable{
 	}
 	
 	public void input() {
-		this.id = autoId++;
+		if(Main.drivers.size() == 0) {
+			this.id = autoId++;
+		}else {
+			this.id = Main.drivers.get(Main.drivers.size() - 1).getId() + 1;
+		}
 		System.out.println("mời bạn nhập tên:");
 		this.name = new Scanner(System.in).nextLine();
 		System.out.println("nhập địa chỉ:");

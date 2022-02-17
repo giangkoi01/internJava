@@ -1,11 +1,11 @@
 package busassignmentmanagement.service;
 
 import busassignmentmanagement.Main;
+import busassignmentmanagement.dao.DriverDAO;
 import busassignmentmanagement.model.Driver;
-import busassignmentmanagement.util.file.FileUtil;
 
 public class DriverService {
-	public static FileUtil fileUtil = new FileUtil();
+	public static DriverDAO driverDAO = new DriverDAO();
 	
 	public void showDriver() {
 		Main.drivers.forEach(e -> System.out.println(e));
@@ -15,7 +15,7 @@ public class DriverService {
 		Driver driver = new Driver();
 		driver.input();
 		Main.drivers.add(driver);
-		fileUtil.writeDataToFile(Main.drivers, "driver.dat");
+		driverDAO.insertDriver(driver);
 	}
 	
 	public static Driver findDriverById(int driverId) {

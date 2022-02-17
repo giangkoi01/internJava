@@ -7,34 +7,34 @@ import java.util.List;
 import java.util.Scanner;
 
 import busassignmentmanagement.Main;
+import busassignmentmanagement.dao.AssignmentDAO;
 import busassignmentmanagement.model.Driver;
 import busassignmentmanagement.model.Router;
 import busassignmentmanagement.model.drivingManager.Assignment;
 import busassignmentmanagement.model.drivingManager.BusLineList;
-import busassignmentmanagement.util.file.FileUtil;
 
 public class AssignmentService {
-	public static FileUtil fileUtil = new FileUtil();
-	
+	public static AssignmentDAO assignmentDAO = new AssignmentDAO();
+
 	public void totalDistance() {
-		 for (Assignment assignment : Main.assignments) {
-	            System.out.println( "tổng khoảng chạy xe trong ngày trong ngày của " + assignment.getDriver().getName() + " là :"
-	                    + assignment.getBusLineLists().stream().mapToDouble(BusLineList::getDistance).sum());
-	        }
-		
+		for (Assignment assignment : Main.assignments) {
+			System.out.println("tổng khoảng chạy xe trong ngày trong ngày của " + assignment.getDriver().getName()
+					+ " là :" + assignment.getBusLineLists().stream().mapToDouble(BusLineList::getDistance).sum());
+		}
+
 	}
 
 	public void sortByNumberLine() {
-		Main.assignments.sort((o1, o2) -> o1.getBusLineLists().size() - o2.getBusLineLists().size());
-		
+		Main.assignments.sort((o1, o2) -> o2.getBusLineLists().size() - o1.getBusLineLists().size());
+
 		for (Assignment assignment : Main.assignments) {
 			System.out.println(assignment);
 		}
 	}
 
 	public void sortByName() {
-		Collections.sort(Main.assignments, (o1, o2) -> o2.getDriver().getName().compareTo(o1.getDriver().getName()));
-		
+		Collections.sort(Main.assignments, (o1, o2) -> o1.getDriver().getName().compareTo(o2.getDriver().getName()));
+
 		for (Assignment assignment : Main.assignments) {
 			System.out.println(assignment);
 		}
@@ -42,7 +42,7 @@ public class AssignmentService {
 
 	public void showAssignment() {
 		Main.assignments.forEach(e -> System.out.println(e));
-		
+
 	}
 
 	public void addNewAssignment() {
@@ -50,7 +50,7 @@ public class AssignmentService {
 			System.out.println("nhập lái xe và tuyến trước khi phân công");
 			return;
 		}
-		
+
 		System.out.println("nhập số lái xe cần phân công");
 		int driverNumber = -1;
 		do {
@@ -67,7 +67,8 @@ public class AssignmentService {
 				System.out.println("số lượng lái xe phải là 1 số");
 			}
 		} while (true);
-		
+
+		boolean checkDriver = false;
 		for (int i = 0; i < driverNumber; i++) {
 			System.out.println("mời bạn nhập id lái xe");
 			int DriverId = -1;
@@ -84,14 +85,14 @@ public class AssignmentService {
 					System.out.println("id phải là 1 số");
 				}
 			} while (true);
-			
+
 			System.out.println("nhập số tuyến");
 			int routerNumber = -1;
 			do {
 				try {
 					routerNumber = new Scanner(System.in).nextInt();
 					if (routerNumber > 0) {
-						if(routerNumber <= Main.routers.size()) {
+						if (routerNumber <= Main.routers.size()) {
 							break;
 						}
 						System.out.println("nhập lại số lượng tuyến");
@@ -101,36 +102,47 @@ public class AssignmentService {
 					System.out.println("số lượng tuyến phải là 1 số");
 				}
 			} while (true);
-			
+
 			List<BusLineList> busLineLists = new ArrayList<BusLineList>();
-			
+
 			Router router = null;
 			int turnNumber = -1;
 			for (int j = 0; j < routerNumber; j++) {
-				
+
 				System.out.println("nhập id tuyến");
 				do {
 					int RouterId = new Scanner(System.in).nextInt();
 					router = RouterService.findRouterById(RouterId);
-					if(router != null) {
+					if (router != null) {
 						break;
 					}
 					System.out.println("tuyến không tồn tại, nhập lại");
 				} while (true);
-				
+
 				System.out.println("nhập số lượt đi");
 				do {
 					turnNumber = new Scanner(System.in).nextInt();
-					if(turnNumber < 15) {
+					if (turnNumber  <= 15) {
 						break;
 					}
+					System.out.println("tổng số lượt không quá 15");
 				} while (true);
-				busLineLists.add(new BusLineList(router, turnNumber));
+				BusLineList busLineList = new BusLineList(router, turnNumber);
+
+				for (Assignment assignment : Main.assignments) {
+					if (assignment.getDriver().getId() == DriverId) {
+						assignment.getBusLineLists().add(busLineList);
+						checkDriver = true;
+						break;
+					}
+				}
+				if (!checkDriver) {
+					busLineLists.add(busLineList);
+					Assignment assignment = new Assignment(driver, busLineLists);
+					Main.assignments.add(assignment);
+					assignmentDAO.insertAssignment(assignment);
+				}
 			}
-			
-			Assignment assignment = new Assignment(driver, busLineLists);
-			Main.assignments.add(assignment);
-			fileUtil.writeDataToFile(Main.assignments, "assignment.dat");
 		}
 	}
 }

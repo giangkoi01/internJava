@@ -1,42 +1,39 @@
 package busassignmentmanagement;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import busassignmentmanagement.dao.AssignmentDAO;
+import busassignmentmanagement.dao.DriverDAO;
+import busassignmentmanagement.dao.RouterDAO;
 import busassignmentmanagement.model.Driver;
 import busassignmentmanagement.model.Router;
 import busassignmentmanagement.model.drivingManager.Assignment;
-import busassignmentmanagement.model.drivingManager.BusLineList;
 import busassignmentmanagement.service.AssignmentService;
 import busassignmentmanagement.service.DriverService;
 import busassignmentmanagement.service.RouterService;
 import busassignmentmanagement.util.DataUtil;
-import busassignmentmanagement.util.file.FileUtil;
 
 public class Main {
 	public static List<Driver> drivers = new ArrayList<Driver>();
 	public static List<Router> routers = new ArrayList<Router>();
 	public static List<Assignment> assignments = new ArrayList<Assignment>();
 	
-	public static FileUtil fileUtil = new FileUtil();
-	
 	private static RouterService routerService = new RouterService();
 	private static DriverService driverService = new DriverService();
 	private static AssignmentService assignmentService = new AssignmentService();
 	
-	@SuppressWarnings("unchecked")
 	private static void initializeData() {
-		Object driverFromFile = fileUtil.readDataFromFile("driver.dat");
-		drivers = DataUtil.isNullOrEmpty(driverFromFile) ? new ArrayList<Driver>() : (ArrayList<Driver>) driverFromFile;
+		List<Driver> driverList = DriverDAO.getDriver();
+		drivers = DataUtil.isNullOrEmpty(driverList) ? new ArrayList<Driver>() : (ArrayList<Driver>) driverList;
 		
-		Object routerFromFile = fileUtil.readDataFromFile("router.dat");
-		routers = DataUtil.isNullOrEmpty(routerFromFile) ? new ArrayList<Router>() : (ArrayList<Router>) routerFromFile;
+		List<Router> routerList = RouterDAO.getRouter();
+		routers = DataUtil.isNullOrEmpty(routerList) ? new ArrayList<Router>() : (ArrayList<Router>) routerList;
 		
-		Object assignmentFromFile = fileUtil.readDataFromFile("assignment.dat");
-		assignments = DataUtil.isNullOrEmpty(assignmentFromFile) ? new ArrayList<Assignment>() : (ArrayList<Assignment>) assignmentFromFile;
+		List<Assignment> assignmentList = AssignmentDAO.getAssignment();
+		assignments = DataUtil.isNullOrEmpty(assignmentList) ? new ArrayList<Assignment>() : (ArrayList<Assignment>) assignmentList;
 	}
 
 	public static void main(String[] args) {

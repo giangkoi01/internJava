@@ -1,11 +1,11 @@
 package busassignmentmanagement.service;
 
 import busassignmentmanagement.Main;
+import busassignmentmanagement.dao.RouterDAO;
 import busassignmentmanagement.model.Router;
-import busassignmentmanagement.util.file.FileUtil;
 
 public class RouterService {
-	public static FileUtil fileUtil = new FileUtil();
+	public static RouterDAO routerDAO = new RouterDAO();
 	
 	public void showRouter() {
 		Main.routers.forEach(e -> System.out.println(e));
@@ -16,7 +16,7 @@ public class RouterService {
 		Router router = new Router();
 		router.input();
 		Main.routers.add(router);
-		fileUtil.writeDataToFile(Main.routers, "router.dat");
+		routerDAO.insertRouter(router);
 	}
 	
 	public static Router findRouterById(int routerId) {

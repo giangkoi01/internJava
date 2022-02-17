@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import busassignmentmanagement.Main;
+
 public class Router implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -45,7 +47,11 @@ public class Router implements Serializable{
 	}
 	
 	public void input() {
-		this.id = autoId++;
+		if(Main.routers.size() == 0) {
+			this.id = autoId++;
+		}else {
+			this.id = Main.routers.get(Main.routers.size() - 1).getId() + 1;
+		}
 		System.out.println("nhập khoảng cách");
 		float distance = -1;
 		do {
